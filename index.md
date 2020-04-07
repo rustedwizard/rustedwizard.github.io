@@ -8,7 +8,7 @@ If this man so named Rusted Wizard is believed to be existed at all. Then, the m
 
 ### This site is an "update as needed" website. As a result content of this site will change frequently, be sure to come back
 
-### Content
+### Content of site
 
 * [Rusted Wizard's Resume](https://rustedwizard.github.io/resume) 
 
