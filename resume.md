@@ -2,7 +2,7 @@
 
 **You may also download this resume in pdf format from [here](https://www.rustedwizard.com/Resume)**
 
-[Back to main page](https://rustedwizard.github.io)
+### [Back to main page](https://rustedwizard.github.io)
 
 ## Qualification profile:
     
@@ -134,4 +134,4 @@
 
 **You may also download this resume in pdf format from [here](https://www.rustedwizard.com/Resume)**
 
-[Back to main page](https://rustedwizard.github.io)
+### [Back to main page](https://rustedwizard.github.io)
