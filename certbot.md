@@ -106,13 +106,13 @@ Now you have Certbot installed, we can start generating SSL certificate. In fact
 
 3. During the running of the above command you will encounter following question ask if you are ok that your ip is logged:
 
-    [Log your IP](/images/certbot/IP.PNG)
+    ![Log your IP](/images/certbot/IP.PNG)
 
 type Y to accept that since you are requesting and certificate from certificate authority, it is reasonable for them to have it logged.
 
 4. After you accept that, you will encounter following prompt to ask you update dns record, this is where Certbot get to know if you own this domain name.
 
-    [Update your DNS](/images/certbot/UpdateDNS.PNG)
+    ![Update your DNS](/images/certbot/UpdateDNS.PNG)
 
 this is where you need goto your register's website, sign into your account and following the procedure your found out earlier to update the DNS record.
 
@@ -120,7 +120,7 @@ this is where you need goto your register's website, sign into your account and 
 
 6. If everything goes correctly, you should see something like following when execution if finished.
 
-    [Generation succeeded](/images/certbot/Finished.PNG)
+    ![Generation succeeded](/images/certbot/Finished.PNG)
 
 7. As you can see, it tells us that the cert file now stored at /etc/letsencrypt/live/rustedwizard.com-003. Note that the folder name will be different. At this step if .pem file is good for your need (given the fact the web host service can take it.), then you are done. But if you need .pfx file we need to do one more step.
 
