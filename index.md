@@ -10,5 +10,7 @@
 
 ### Content of site
 
-* [Rusted Wizard's Resume](https://rustedwizard.github.io/resume) 
+* [Rusted Wizard's Resume](https://rustedwizard.github.io/resume)
+
+* [Using Certbot to generate SSL certificate](https://rustedwizard.github.io/certbot)
 
