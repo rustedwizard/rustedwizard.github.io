@@ -5,7 +5,7 @@
 ### [Back to main page](https://rustedwizard.github.io)
 
 ## Qualification profile:
-    
+
 **Highly skilled and motivated C#.Net Developer with strong expertise developing and troubleshooting customer-facing websites in Micro-services environments. Solid experience delivering innovative and time sensitive solutions according to Agile methodologies**
 
 * Adept at designing, building, and optimizing reliable C# code.
