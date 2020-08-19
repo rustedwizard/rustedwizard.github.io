@@ -1,6 +1,6 @@
 # Rusted Wizard's resume
 
-**You may also download this resume in pdf format from [here](https://www.rustedwizard.com/Resume)**
+**You may also download this resume in pdf format from [here](https://www.rustedwizard.com/assets/Resume/My-Resume.pdf)**
 
 ### [Back to main page](https://rustedwizard.github.io)
 
@@ -132,6 +132,6 @@
 * Composed and debugged code for a customer-facing website. Generated regular reports for internal and external audiences. Debugged and modified database to ensure graphics and texts were stored correctly, retrieved, and displayed to end-users. Resolved issues between backend functionality and front-end pages. Corrected issues of adaptive UI to make sure website meets client specification on either desktop and mobile platform. Understood client specifications and corrected user experience issues to customer's satisfaction. Proactively self-assigned and completed Agile tasks.
     * Collaborated on a team of six developers to deliver a tool to generate automated reports based on Microsoft Azure Data Lake.
 
-**You may also download this resume in pdf format from [here](https://www.rustedwizard.com/Resume)**
+**You may also download this resume in pdf format from [here](https://www.rustedwizard.com/assets/Resume/My-Resume.pdf)**
 
 ### [Back to main page](https://rustedwizard.github.io)
