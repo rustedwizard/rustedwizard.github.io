@@ -35,13 +35,19 @@ You will need to have WSL installed on your machine. Or if you have a machine wi
     sudo apt-get install certbot -t stretch-backports
     ```
 
-* For Ubuntu (NOTE: the latest Ubuntu 20.04 is not supported):
+* For Ubuntu 18.04 or lower:
 
     ```bash
     sudo apt-get update
     sudo apt-get install software-properties-common
     sudo add-apt-repository universe
     sudo add-apt-repository ppa:certbot/certbot
+    sudo apt-get update
+    sudo apt-get install certbot
+    ```
+* For Ubuntu 20.04:
+
+    ```bash
     sudo apt-get update
     sudo apt-get install certbot
     ```
