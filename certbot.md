@@ -101,7 +101,7 @@ Now you have Certbot installed, we can start generating SSL certificate. In fact
 
     * .TechDomain: [Manage DNS resources](https://controlpanel.tech/kb/node/636)
 
-2. Once you found out how to update your DNS record you are ready to go. Let's generate our cert file. Here, to run following command you need supply your own domain name and here in this tutorial I am using my rustedwizard.com.
+2. Notice: From here on, I am using my own domain name rustedwizard.com as an example. When you do, just subsitute it to your own domain name. Once you found out how to update your DNS record you are ready to go. Let's generate our cert file. Here, to run following command you need supply your own domain name and here in this tutorial I am using my rustedwizard.com.
     * If you want to generate Wild Card SSL certificate (which means you can use it to encrypt all sub domians), your need supply your domain name as
 
         ```*.rustedwizard.com,rustedwizard.com```
