@@ -45,6 +45,7 @@ You will need to have WSL installed on your machine. Or if you have a machine wi
     sudo apt-get update
     sudo apt-get install certbot
     ```
+
 * For Ubuntu 20.04:
 
     ```bash
@@ -139,6 +140,7 @@ this is where you need goto your register's website, sign into your account and 
     cd /etc/letsencrypy/liverustedwizard.com-003
     openssl pkcs12 -export -out bundle.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem 
     ```
+
 During execution of openssl you will be prompted to enter password for .pfx file. When done, you can freely copy the .pfx file to the location you want and go head use it for your website.
 
 ## The End
