@@ -44,4 +44,6 @@ As you can see in above code, the source of value is Console.ReadLine function w
 
 That's it, that is how you take input in a functional way in C#.
 
+## More staff on the way ...
+
 [Go back to index page](https://rustedwizard.github.io)
