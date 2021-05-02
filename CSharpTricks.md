@@ -1,8 +1,7 @@
 # C# programming tips and tricks
 
-## 1. Take input in functional way(like what's been done in F#)
-
 [Go back to index page](https://rustedwizard.github.io)
+## 1. Take input in functional way(like what's been done in F#)
 
 No redundant introduction. Let's take a look at the actual code first:
 
