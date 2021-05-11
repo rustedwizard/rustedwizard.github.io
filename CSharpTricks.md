@@ -3,6 +3,8 @@
 [Go back to index page](https://rustedwizard.github.io)
 ## 1. Take input in functional way(like what's been done in F#)
 
+### If you want to play around with actual code, please [visit this LeetCode playground](https://leetcode.com/playground/7PrGsGJz)
+
 No redundant introduction. Let's take a look at the actual code first:
 
 ```csharp
@@ -43,6 +45,8 @@ To use this code, one can simply do following (taking input from console window)
 As you can see in above code, the source of value is Console.ReadLine function which read input from console. The stopping condition is when line read in from console is empty. Of course you can change both function, to define your own source of input and stopping condition.
 
 That's it, that is how you take input in a functional way in C#.
+
+### If you want to play around with actual code, please [visit this LeetCode playground](https://leetcode.com/playground/7PrGsGJz)
 
 ## More staff on the way ...
 
