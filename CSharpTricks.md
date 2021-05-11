@@ -44,6 +44,36 @@ To use this code, one can simply do following (taking input from console window)
 
 As you can see in above code, the source of value is Console.ReadLine function which read input from console. The stopping condition is when line read in from console is empty. Of course you can change both function, to define your own source of input and stopping condition.
 
+### Caution
+
+The code above is all good, but there is something need some attention. That is the behavior of IEnumerable acting like sequence which means if you do something as follow:
+
+```csharp
+    foreach(var e in TakeInput(Console.ReadLine, x=>!x.Trim().Equals(""))
+    {
+        Console.WriteLine($"You entered: {e}");
+    }
+```
+
+You would see output something like following:
+
+![Output](/images/csharptricks/FIOut.PNG)
+
+This is due to the execution of IEnumerable, what happens is that IEnumerable is executed at the last moment it has to. So when foreach loop calls TakeInput function it read in input from console tested the line read in is not empty and returned the line, then then it paused waiting for it to be called again, at this time foreach loop executed whatever inside loop which in this case print out whatever you entered. Then when loop comes back calls TakeInput function again, the whole process repeat itself.
+
+To change it, do following:
+
+```csharp
+    var list = TakeInput(Console.ReadLine, x=>!x.Trim().Equals("");
+    foreach(var s in list){
+        Console.WriteLine($"You entered: {s}");
+    }
+``` 
+
+Then you would get output as you expected:
+
+![Output](/images/csharptricks/FIOut2.PNG)
+
 That's it, that is how you take input in a functional way in C#.
 
 ### If you want to play around with actual code, please [visit this LeetCode playground](https://leetcode.com/playground/7PrGsGJz)
