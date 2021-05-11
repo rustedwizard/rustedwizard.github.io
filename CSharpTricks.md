@@ -59,7 +59,7 @@ You would see output something like following:
 
 ![Output](/images/csharptricks/FIOut.PNG)
 
-This is due to the execution of IEnumerable, what happens is that IEnumerable is executed at the last moment it has to. So when foreach loop calls TakeInput function it read in input from console tested the line read in is not empty and returned the line, then it paused waiting for it to be called again, at this time foreach loop executed whatever inside loop which in this case print out whatever you entered. Then when loop comes back calls TakeInput function again, the whole process repeat itself.
+This is due to the execution of IEnumerable, (an inaccurate) explanation is that IEnumerable is executed at the last moment it has to. So when foreach loop calls TakeInput function it read in input from console tested the line read in is not empty and returned the line, then it paused waiting for it to be called again, at this time foreach loop executed whatever inside loop which in this case print out whatever you entered. Then when loop comes back calls TakeInput function again, the whole process repeat itself.
 
 To change it, do following:
 
