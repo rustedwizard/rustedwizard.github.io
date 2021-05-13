@@ -64,7 +64,7 @@ This is due to the execution of IEnumerable, (an inaccurate) explanation is that
 To change it, do following:
 
 ```csharp
-    var list = TakeInput(Console.ReadLine, x=>!x.Trim().Equals("");
+    var list = TakeInput(Console.ReadLine, x=>!x.Trim().Equals("").ToList();
     foreach(var s in list){
         Console.WriteLine($"You entered: {s}");
     }
