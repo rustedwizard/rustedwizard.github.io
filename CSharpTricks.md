@@ -5,6 +5,8 @@
 
 ### If you want to play around with actual code, please [visit this LeetCode playground](https://leetcode.com/playground/7PrGsGJz)
 
+### Also, You can download code snippet file for Visual Studio from [here](https://github.com/rustedwizard/TakeInput_Functional/releases/tag/1.0)
+
 No redundant introduction. Let's take a look at the actual code first:
 
 ```csharp
