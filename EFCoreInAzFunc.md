@@ -1,5 +1,9 @@
 # Use Dependency injection and Entity Framework Core (Code First Approach) in Azure Functions v3
 
+[Go back to index page](https://rustedwizard.github.io)
+
+***You can check out the [example project on GitHub here](https://github.com/rustedwizard/EfFunc)***
+
 ## Setup
 
 In this tutorial Visual Studio 2019 is used. However there should not be too much of difference if you use different version of Visual Studio.
@@ -56,9 +60,11 @@ At this point all setup work is complete. We can now get to do some coding.
 
 The very first task would be enable Dependency injection in this project. This job relies on the [Microsoft.Azure.Functions.Extensions v1.1.0](https://www.nuget.org/packages/Microsoft.Azure.Functions.Extensions/) package we installed earlier. It provides a very simple way to do so.
 
-Here is what you need to do:
+Here is what you need to do, as GIF shows:
 
 * Create a new C# file name it Startup.cs.
+
+![Create StartUp](/images/AzFuncGif/CreateStartup.gif)
 
 * Put following code in the file.
 
@@ -91,6 +97,7 @@ With Dependency Injection enabled, we can start coding the Entity Framework part
 Before we work with Entity Framework, let's create model first. To do it, As following GIF shows, simply:
 
 * Create a new folder named Model (this is only for purpose of keep code organized).
+
 * Create new Todo.cs file
 
 ![Create Todo Model](/images/AzFuncGif/CreateTodo.gif)
@@ -127,6 +134,7 @@ As you can see, it's a very simple class, but it is enough for demonstration pur
 To create a TodoDbContext, simple do following:
 
 * Create new folder called DbContext (To keep code organized).
+
 * Create new file called TodoDbContext.cs.
 
 As following GIF shows:
@@ -169,6 +177,7 @@ If you have any experience in ASP.Net and Entity Framework, at this point you wo
 To do so we need to implement interface ```IDesignTimeDbContextFactory```, so let's do following:
 
 * Create new folder called DbContextFactory
+
 * Create new file called TodoDbContextFactory.cs
 
 As follwoing GIF shows:
@@ -239,14 +248,153 @@ Now, we have our database, model and DbContext ready, we now need to get it work
 First we need get connection string setup for local machine. Azure Functions Project provides us a place to do so in local.settings.json. You can do so in following steps:
 
 * Open local.settings.json
+
 * Within the scope of ```"Values"``` put a new line like following:
 
 ```JSON
 "SqlConnection":"Server=localhost; Database=Todo; Integrated Security=true"
 ```
 
+As a result the local.settings.json should looks like following:
+
+```json
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "SqlConnection": "Server=localhost; Database=Todo; Integrated Security=true"
+    }
+}
+```
+
 Remember to replace sql connection string with you own!
 
-***Warning: Please remember local.settings.json is for local development purpose only, so you should NEVER check this file into you repository. Also you should NEVER hard code database connection string anywhere in the project. Luckily, by default, Visual Studio created a .gitignore file which include entry to ignore local.settings.json file. When this function works on Azure cloud, you will need to configure database connection string in Application Settings which covered in this tutorial in later section***
+***Warning: Please remember local.settings.json is for local development purpose only, so you should NEVER check this file into you repository. Also you should NEVER hard code database connection string anywhere in the project. Luckily, by default, Visual Studio created a .gitignore file which include entry to ignore local.settings.json file. When this function works on Azure cloud, you will need to configure database connection string in Application Settings, so you do not need modify your code***
+
+#### Hook up DbContext with Dependency injection.
+
+In StartUp.cs we created following modify the code to make it looking like following:
+
+```csharp
+using AzFunc.DbContexts;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+
+[assembly: FunctionsStartup(typeof(AzFunc.StartUp))]
+
+namespace AzFunc
+{
+    public class StartUp : FunctionsStartup
+    {
+        public override void Configure(IFunctionsHostBuilder builder)
+        {
+            var connectionString = Environment.GetEnvironmentVariable("SqlConnection");
+            _ = builder.Services.AddDbContext<TodoDbContext>(op =>
+                  SqlServerDbContextOptionsExtensions.UseSqlServer(op, connectionString));
+        }
+    }
+}
+```
+
+Now, all Dependency Injection and Entity Framework part is done. We can get Azure Function part.
+
+### Create API for Azure Function
+
+Finally, we get to create API for Azure Function.
+
+To do that, simply follow following steps:
+
+* Rename Function1.cs to AzFunc.cs (or some other meaningful name).
+
+* Modify the code, so the file looks like following:
 
 
+```csharp
+using AzFunc.DbContexts;
+using AzFunc.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AzFunc
+{
+    public class AzFunc
+    {
+        private readonly TodoDbContext _context;
+
+        public AzFunc(TodoDbContext context)
+        {
+            _context = context;
+        }
+
+        [FunctionName("Get")]
+        public async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "get")] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation($"{DateTime.Now.ToUniversalTime()}: Get all Todo item request recieved");
+            var todos = await _context.todos.ToListAsync();
+            return new OkObjectResult(todos);
+        }
+
+        [FunctionName("Add")]
+        public async Task<IActionResult> AddOne(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "addone")] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation($"{DateTime.Now.ToUniversalTime()}: Add one new item request recieved");
+            var reqBody = await new StreamReader(req.Body).ReadToEndAsync();
+            var t = JsonConvert.DeserializeObject<Todos>(reqBody);
+            _ = await _context.AddAsync(t);
+            var c = await _context.SaveChangesAsync();
+            if (c == 0)
+            {
+                return new BadRequestObjectResult($"Following object have not been insert into database \n {t}");
+            }
+            return new OkObjectResult(t);
+        }
+
+        [FunctionName("AddMany")]
+        public async Task<IActionResult> AddMany(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "addmany")] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation($"{DateTime.Now.ToUniversalTime()}: Add many items request recieved");
+            var reqBody = await new StreamReader(req.Body).ReadToEndAsync();
+            var list = JsonConvert.DeserializeObject<List<Todos>>(reqBody);
+            foreach (var t in list)
+            {
+                _ = await _context.AddAsync(t);
+            }
+            var c = await _context.SaveChangesAsync();
+            if (c != list.Count)
+            {
+                return new BadRequestObjectResult($"Not all object have been saved to database \n {list}");
+            }
+            return new OkObjectResult(list);
+        }
+    }
+}
+
+```
+
+As you can see, the constructor ```public AzFunc(TodoDbContext context)``` takes ```TodoDbContext``` as parameter which is how Dependency Injection supposed to work, and we get to use ```DbContext``` just like we use ```DbContext``` in any other project. Above code only shows 3 api functions as example, you can go ahead add more as you need to.
+
+## End Note
+
+Now, you have gone through the entire process of using Entity Framework and Dependency in Azure Functions. Hope you found this tutorial useful. ***Also, you can check out the [example project on GitHub here](https://github.com/rustedwizard/EfFunc)***
+
+
+[Go back to index page](https://rustedwizard.github.io)

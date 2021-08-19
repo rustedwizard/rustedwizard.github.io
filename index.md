@@ -15,3 +15,5 @@
 * [Using Certbot to generate SSL certificate](https://rustedwizard.github.io/certbot)
 
 * [C# Programming tips and tricks](https://rustedwizard.github.io/CSharpTricks)
+
+* [Use Dependency Injection and Entity Framework in Azure Functions](https://rustedwizard.github.io/EFCoreInAzFunc)
