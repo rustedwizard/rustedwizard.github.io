@@ -180,7 +180,7 @@ To do so we need to implement interface ```IDesignTimeDbContextFactory```, so le
 
 * Create new file called TodoDbContextFactory.cs
 
-As follwoing GIF shows:
+As following GIF shows:
 
 ![Create TodoDbContextFactory](/images/AzFuncGif/CreateTodoDbContextFactory.gif)
 
