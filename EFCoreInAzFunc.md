@@ -392,6 +392,36 @@ namespace AzFunc
 
 As you can see, the constructor ```public AzFunc(TodoDbContext context)``` takes ```TodoDbContext``` as parameter which is how Dependency Injection supposed to work, and we get to use ```DbContext``` just like we use ```DbContext``` in any other project. Above code only shows 3 api functions as example, you can go ahead add more as you need to.
 
+## Test with Postman
+
+Now we can see this Azure Function in action on local machine.
+
+Start Postman (if you do not have it, download and install it from [here](https://www.postman.com/downloads/?utm_source=postman-home))
+
+* Press F5 to start Debug run of Azure Functions project, and you shall see console window looks like following:
+
+![Running Console](/images/AzFuncGif/running.JPG)
+
+* Here we test the Add function, so create a new POST request with following json body:
+
+```json
+{
+    "Name":"Test",
+    "Description":"Test Desc",
+    "Comment":"Test Comment",
+    "StartTime":"2020/02/08",
+    "EndTime":"2020/08/02"
+}
+```
+
+Hit the send button, And you should see in output pane that the same message get send back (As we programmed) like following:
+ 
+![Postman result](/images/AzFuncGif/Postman.JPG)
+
+Now, we can verify that the data actually get added, by verify it in database as following Azure Data Studio screenshot shows:
+
+![Database result](/images/AzFuncGif/data.JPG)
+
 ## End Note
 
 Now, you have gone through the entire process of using Entity Framework and Dependency in Azure Functions. Hope you found this tutorial useful. ***Also, you can check out the [example project on GitHub here](https://github.com/rustedwizard/EfFunc)***
