@@ -8,7 +8,7 @@
 
 In this tutorial Visual Studio 2019 is used. However there should not be too much of difference if you use different version of Visual Studio.
 
-For entity framework core, code-first-approach is used in this tutorial.
+For Entity Framework core, Code-First-Approach is used in this tutorial, for database, this tutorial uses Microsoft SQL Server.
 
 ***.Net Core 3.1 LTS is used in this tutorial. Warning: DO NOT USE .Net 5 since you will encounter [this issue](https://github.com/Azure/azure-functions-core-tools/issues/2304).***
 
@@ -24,7 +24,7 @@ As following GIF shows, in Visual Studio Create a new Azure Function Project. In
 
 There are few Nuget packages we need to install before we get to the code.
 
-***DUE TO THE FACT WE USE .Net 3.1, WE NEED TO PAY A LITTLE BIT ATTENTION WHEN WE INSTALL NUGET PACKAGES.***
+***DUE TO THE FACT WE USE .Net 3.1, WE NEED TO PAY A LITTLE BIT ATTENTION ON VERSIONS WHEN WE INSTALL NUGET PACKAGES.***
 
 Here is a list of Nuget packages we need to install:
 
@@ -36,7 +36,7 @@ Here is a list of Nuget packages we need to install:
 
 * [Microsoft.Extension.DependencyInjection v3.1.18](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/3.1.18)
 
-***You may notice that most of above metioned packages are not the latest. The reason is we are using .Net core 3.1, you have to keep the version match (basically 3.1.x matches to .Net core 3.1, 5.0.x mathces to .Net core 5)***
+***You may notice that most of above metioned packages are not the latest. The reason is we are using .Net core 3.1, you have to keep the version match (basically 3.1.x matches to .Net core 3.1, 5.0.x matches to .Net core 5)***
 
 Now as following GIF shows, do following to install packages.
 
@@ -170,7 +170,7 @@ namespace AzFunc.DbContext
 
 In this tutorial, I am using [Fluent API](https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/fluent/types-and-properties) instead of [Data Annotation](https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/data-annotations), so I can keep the Todo class clean. As you can see the ```GUID``` type ```ID``` of Todo class is the primary key and index. Property Name and Description can not be null and has maximum length of 60 and 500 characters. As for comment there's a maximum length of 300 characters limit. For StartTime and EndTime, since [DateTime type](https://docs.microsoft.com/en-us/dotnet/api/system.datetime?view=netcore-3.1) in C# is a value type, and it's not nullable (unless you make it nullable by using ```DateTime?```), so by default, it will be required as database column.
 
-#### Enable Code First in project.
+#### Enable Code First in project
 
 If you have any experience in ASP.Net and Entity Framework, at this point you would start using ```Add-Migration``` and ```Update-Database```. ***However, if you try this now in Azure Functions Project, you would get error.*** Because, EntityFramework does not know how to create TodoDbContext when we invoke Add-Migration tool. Luckily, it is very easy and only involve a little bit more coding to tell it how to create one and we are ready to go.
 
@@ -213,7 +213,7 @@ You can easily do that in ```Nuget Package Manager -> Package Manager Console```
 
 ```powershell
 $env:SqlConnection="<your connection string here>"
-``` 
+```
 
 Assuming you have Sql Server installed on you local machine, the specific command would look like fowlloing:
 
@@ -272,7 +272,7 @@ Remember to replace sql connection string with you own!
 
 ***Warning: Please remember local.settings.json is for local development purpose only, so you should NEVER check this file into you repository. Also you should NEVER hard code database connection string anywhere in the project. Luckily, by default, Visual Studio created a .gitignore file which include entry to ignore local.settings.json file. When this function works on Azure cloud, you will need to configure database connection string in Application Settings, so you do not need modify your code***
 
-#### Hook up DbContext with Dependency injection.
+#### Hook up DbContext with Dependency injection
 
 In StartUp.cs we created following modify the code to make it looking like following:
 
@@ -424,7 +424,6 @@ Now, we can verify that the data actually get added, by verify it in database as
 
 ## End Note
 
-Now, you have gone through the entire process of using Entity Framework and Dependency in Azure Functions. Hope you found this tutorial useful. ***Also, you can check out the [example project on GitHub here](https://github.com/rustedwizard/EfFunc)***
-
+Now, you have gone through the entire process of using Entity Framework and Dependency Injection in Azure Functions. Hope you found this tutorial useful. ***Also, you can check out the [example project on GitHub here](https://github.com/rustedwizard/EfFunc)***
 
 [Go back to index page](https://rustedwizard.github.io)
