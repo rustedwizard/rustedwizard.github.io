@@ -1,4 +1,4 @@
-# Use Dependency injection and Entity Framework Core (Code First Approach) in Azure Functions v3
+# Use Dependency injection and Entity Framework Core (Code First Approach) in Azure Functions (In-Process) v3
 
 [Go back to index page](https://rustedwizard.github.io)
 
@@ -10,7 +10,9 @@ In this tutorial Visual Studio 2019 is used. However there should not be too muc
 
 For Entity Framework core, Code-First-Approach is used in this tutorial, for database, this tutorial uses Microsoft SQL Server.
 
-***.Net Core 3.1 LTS is used in this tutorial. Warning: DO NOT USE .Net 5 since you will encounter [this issue](https://github.com/Azure/azure-functions-core-tools/issues/2304).***
+***As time of writing this tutorial .Net Core 3.1 LTS is used for In-Process Model. Warning: DO NOT USE .Net 5 since you will encounter [this issue](https://github.com/Azure/azure-functions-core-tools/issues/2304).***
+
+***However, there is a good news for .Net 5, you can use Azure Function (Isolated) on .Net 5 where the function is running in separate process, as a result, by default, you get full control over Dependency Injection and you can configure Entity Framework just as you configure it in ASP.Net project. You can check out documentation [here](https://docs.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide)*** 
 
 ### Project Creation
 

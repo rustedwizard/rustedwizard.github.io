@@ -16,4 +16,4 @@
 
 * [C# Programming tips and tricks](https://rustedwizard.github.io/CSharpTricks)
 
-* [Use Dependency Injection and Entity Framework in Azure Functions](https://rustedwizard.github.io/EFCoreInAzFunc)
+* [Use Dependency Injection and Entity Framework in Azure Functions](https://rustedwizard.github.io/EFCoreInAzFuncInProc)
