@@ -32,6 +32,8 @@
 
 * C#
 
+* C++
+
 * Java
 
 * Python
@@ -88,6 +90,14 @@
 * Microsoft Certified Professional, 2014
 
 ## Professional experience
+
+### STPub ComplianceEHS, Vancouver
+
+* **2021/08/30 ~ Current
+
+* **Technologies: C#, SQL, .Net, Azure APIM, Azure Log Analytics, Azure B2C, Azure Web App, Windows Server, MSSQL, Javascript, Angular**
+
+Analyze and assess existing business systems and procedures. Defining software development project plans, including scope, scheduling, and implementation. Research, identify, analyze, and fulfill requirements of all internal and STP Partners. Design, implement, test and monitor applications for new and existing software systems for the purposes of correcting errors, isolating areas for improvement, and debugging / fixing. Maintain existing web/console/mobile apps including classic ASP applications. Manage and/or provide guidance to junior team members
 
 ### Maximizer CRM Solutions, Vancouver
 
