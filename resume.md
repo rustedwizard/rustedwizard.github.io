@@ -91,9 +91,27 @@
 
 ## Professional experience
 
+### Microsoft, Vancouver
+
+* **2022/01/24 ~ Current**
+
+* **Technologies: C#. ASP.Net, .Net Core, .Net, Azure, SQL, Javascript**
+
+* Design, code, test, and develop features with good quality, maintainability, and end to end ownership.
+
+* Define and leverage data models to understand cost drivers, to create concrete action plans that address open-ended problems, and to track progress toward efficiency goals.
+
+* Develop highly-efficient code that scales to millions of active users at minimal operational costs.
+
+* Work with all aspects of a high throughput and multi-tenant service.
+
+* Integrate and leverage Microsoft and Azure technologies efficiently within the Power BI Platform.
+
+* Collaborate effectively within the team and with partner teams across Microsoft.
+
 ### STPub ComplianceEHS, Vancouver
 
-* **2021/08/30 ~ Current
+* **2021/08/30 ~ 2022/01/21
 
 * **Technologies: C#, SQL, .Net, Azure APIM, Azure Log Analytics, Azure B2C, Azure Web App, Windows Server, MSSQL, Javascript, Angular**
 
